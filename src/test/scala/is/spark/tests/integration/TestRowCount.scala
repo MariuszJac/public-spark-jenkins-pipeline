@@ -1,10 +1,10 @@
-package is.spark.tests
+package is.spark.tests.integration
 
 import com.holdenkarau.spark.testing.DataFrameSuiteBase
 import org.apache.spark.sql.SaveMode
+import org.apache.spark.sql.functions.{col, explode}
 import org.scalatest.Matchers._
 import org.scalatest.{FeatureSpec, GivenWhenThen}
-import org.apache.spark.sql.functions.{explode,col}
 
 class TestRowCount extends FeatureSpec with GivenWhenThen with DataFrameSuiteBase {
   feature("Raw Extract") {

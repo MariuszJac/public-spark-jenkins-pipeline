@@ -1,8 +1,7 @@
-package is.spark.tests
+package is.spark.tests.unit
 
 import is.spark.examples.{Pizza, Topping}
-import org.scalatest.FunSuite
-import org.scalatest.BeforeAndAfter
+import org.scalatest.{BeforeAndAfter, FunSuite}
 
 class PizzaTests extends FunSuite with BeforeAndAfter {
 

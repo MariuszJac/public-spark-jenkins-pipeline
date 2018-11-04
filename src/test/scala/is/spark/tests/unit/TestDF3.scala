@@ -1,4 +1,4 @@
-package is.spark.tests
+package is.spark.tests.unit
 
 import com.holdenkarau.spark.testing.DataFrameSuiteBase
 import org.scalatest.FunSuite

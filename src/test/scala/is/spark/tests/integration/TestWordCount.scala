@@ -1,13 +1,10 @@
-package is.spark.tests
+package is.spark.tests.integration
 
 import com.holdenkarau.spark.testing.DataFrameSuiteBase
 import is.spark.examples.jobs.OrdersTransform
+import org.apache.spark.rdd.RDD
 import org.scalatest.Matchers._
 import org.scalatest.{FeatureSpec, GivenWhenThen}
-
-import scala.util.Random
-import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.types.{DateType, DecimalType, StructType}
 
 class TestWordCount extends FeatureSpec with GivenWhenThen with DataFrameSuiteBase {
   feature("Word Count") {
