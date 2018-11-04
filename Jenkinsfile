@@ -4,6 +4,34 @@ pipeline {
 	maven 'Maven3'
     }
     stages {
+        stage('Integration testing') {
+                steps {
+                    sh 'mvn test -DmembersOnlySuites=is.spark.tests.integration'
+                    step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-'+ '*IT.xml'])
+                }
+        }
+
+        /*
+        stage('Testing') {
+            parallel {
+                stage("Unit testing") {
+                    steps {
+                        dir ('out')
+                        dir ('out/output.parquet')
+                        sh 'mvn test -DmembersOnlySuites=is.spark.tests.unit'
+                        step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-*UT.xml'])
+                    }
+                }
+                stage("Integration testing") {
+                    steps {
+                        sh 'mvn test -DmembersOnlySuites=is.spark.tests.integration'
+                        step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-'+ '*IT.xml'])
+                    }
+                }
+            }
+        }
+        */
+
         stage('Compilation and Analysis') {
             parallel {
                 stage("Compilation") {
@@ -26,13 +54,6 @@ pipeline {
                 }
             }
         }
-        stage('Unit testing') {
-                steps {
-                    sh 'mvn test -DmembersOnlySuites=is.spark.tests.integration'
-                    step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-'+ '*IT.xml'])
-                }
-        }
-
 
         stage('QA') {
           steps {
