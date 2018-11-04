@@ -34,10 +34,10 @@ pipeline {
                 step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-*UT.xml'])
             }
         }
+
         /*
         stage('Testing') {
-            //parallel
-            {
+            parallel {
                 stage("Unit testing") {
                     steps {
                         dir ('out')
@@ -46,17 +46,16 @@ pipeline {
                         step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-*UT.xml'])
                     }
                 }
-                /*
                 stage("Integration testing") {
                     steps {
                         sh 'mvn test -DmembersOnlySuites=is.spark.tests.integration'
                         step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-'+ '*IT.xml'])
                     }
                 }
-                */
             }
         }
         */
+
         stage('QA') {
           steps {
             jacoco()
