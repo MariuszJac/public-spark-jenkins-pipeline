@@ -22,7 +22,7 @@ class TestRowCount extends FeatureSpec with GivenWhenThen with DataFrameSuiteBas
 
 
       When("We Save To Parquet")
-      val pathToWriteParquetTo = "out/output.parquet"
+      val pathToWriteParquetTo = "output.parquet"
       df.write.mode(SaveMode.Overwrite).parquet(pathToWriteParquetTo)
 
       Then("We should clean and standardize the output to parquet")
