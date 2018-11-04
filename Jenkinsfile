@@ -40,6 +40,7 @@ pipeline {
         }
         stage('QA') {
           steps {
+            sh 'mvn scoverage:report'
             step([$class: 'ScoveragePublisher', reportDir: 'target/scoverage-data', reportFile: 'scoverage.coverage.xml'])
             //jacoco()
             withSonarQubeEnv('SonarQube') {
