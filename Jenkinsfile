@@ -27,12 +27,10 @@ pipeline {
             }
         }
         stage('Unit testing') {
-            stage("Integration testing") {
                 steps {
                     sh 'mvn test -DmembersOnlySuites=is.spark.tests.integration'
                     step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-'+ '*IT.xml'])
                 }
-            }
         }
 
 
