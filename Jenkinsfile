@@ -42,8 +42,8 @@ pipeline {
           steps {
             sh 'mvn scoverage:report'
             sh 'cp target/scoverage-data/scoverage.coverage.xml target/site/scoverage/'
-            step([$class: 'ScoveragePublisher', reportDir: 'target/site/scoverage', reportFile: 'index.html'])
-            //step([$class: 'ScoveragePublisher', reportDir: 'target/site/scoverage', reportFile: 'scoverage.coverage.xml'])
+            step([$class: 'ScoveragePublisher', reportDir: 'target/site/scoverage', reportFile: 'scoverage.coverage.xml'])
+            //step([$class: 'ScoveragePublisher', reportDir: 'target/site/scoverage', reportFile: 'index.html'])
             //step([$class: 'ScoveragePublisher', reportDir: 'target/scoverage-data', reportFile: 'scoverage.coverage.xml'])
             //jacoco()
             withSonarQubeEnv('SonarQube') {
