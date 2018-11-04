@@ -41,7 +41,10 @@ pipeline {
         stage('QA') {
           steps {
             sh 'mvn scoverage:report'
-            step([$class: 'ScoveragePublisher', reportDir: 'target/scoverage-data', reportFile: 'scoverage.coverage.xml'])
+            sh 'cp scoverage-data/scoverage.coverage.xml site/scoverage/'
+            step([$class: 'ScoveragePublisher', reportDir: 'target/site/scoverage', reportFile: 'scoverage.coverage.xml'])
+
+            //step([$class: 'ScoveragePublisher', reportDir: 'target/scoverage-data', reportFile: 'scoverage.coverage.xml'])
             //jacoco()
             withSonarQubeEnv('SonarQube') {
               // requires SonarQube Scanner for Maven 3.2+
