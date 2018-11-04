@@ -41,7 +41,7 @@ pipeline {
         stage('QA') {
           steps {
             sh 'mvn scoverage:report'
-            sh 'cp scoverage-data/scoverage.coverage.xml site/scoverage/'
+            sh 'cp target/scoverage-data/scoverage.coverage.xml target/site/scoverage/'
             step([$class: 'ScoveragePublisher', reportDir: 'target/site/scoverage', reportFile: 'scoverage.coverage.xml'])
 
             //step([$class: 'ScoveragePublisher', reportDir: 'target/scoverage-data', reportFile: 'scoverage.coverage.xml'])
