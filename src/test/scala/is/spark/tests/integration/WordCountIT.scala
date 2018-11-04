@@ -21,8 +21,8 @@ class WordCountIT extends FeatureSpec with GivenWhenThen with DataFrameSuiteBase
       val expected = List(List("hi"), List("hi", "holden"), List("bye"))
       rdd should be (expected)
 
- //     val transf = OrdersTransform
- //     transf.executeNew()
+      val transf = OrdersTransform
+      transf.executeNew()
     }
     def tokenize(f: RDD[String]) = {
       f.map(_.split(" ").toList)
