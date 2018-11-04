@@ -36,12 +36,14 @@ pipeline {
                         step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-*UT.xml'])
                     }
                 }
+                /*
                 stage("Integration testing") {
                     steps {
                         sh 'mvn test -DmembersOnlySuites=is.spark.tests.integration'
                         step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-'+ '*IT.xml'])
                     }
                 }
+                */
             }
         }
         stage('QA') {
