@@ -3,6 +3,7 @@
 <!-- https://github.com/jenkinsci/github-pr-coverage-status-plugin/blob/master/README.md -->
 <!-- https://github.com/shanbin/scoverage-plugin/issues/15 -->
 <!-- https://groups.google.com/forum/#!topic/scala-code-coverage-tool/CdAuGfbB9j8 -->
+<!-- https://stackoverflow.com/questions/35783964/jenkins-html-publisher-plugin-no-css-is-displayed-when-report-is-viewed-in-j -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -188,6 +189,29 @@
 						</manifest>
 					</archive>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.scalastyle</groupId>
+				<artifactId>scalastyle-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<verbose>false</verbose>
+					<failOnViolation>true</failOnViolation>
+					<includeTestSourceDirectory>true</includeTestSourceDirectory>
+					<failOnWarning>false</failOnWarning>
+					<sourceDirectory>${project.basedir}/src/main/scala</sourceDirectory>
+					<testSourceDirectory>${project.basedir}/src/test/scala</testSourceDirectory>
+					<configLocation>configs/scalastyle_config.xml</configLocation>
+					<outputFile>${project.basedir}/target/checkstyle-result.xml</outputFile>
+					<outputEncoding>UTF-8</outputEncoding>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 		<pluginManagement>
