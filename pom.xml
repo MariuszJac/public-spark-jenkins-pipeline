@@ -1,3 +1,5 @@
+<!-- http://www.scalatest.org/user_guide/using_the_scalatest_maven_plugin -->
+<!-- https://technicaltesting.wordpress.com/tag/scalatest-maven-plugin/ -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -247,4 +249,49 @@
 		</plugins>
 	</reporting>
 
-	</project>
+	<profiles>
+		<profile>
+			<id>unit</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<excludes>
+								<exclude>**/*IntegrationTest.scala</exclude>
+								<exclude>**/*IntTest.scala</exclude>
+							</excludes>
+							<!-- Run only tests whose name end with "UnitTest" -->
+							<includes>
+								<include>**/*UnitTest.scala</include>
+							</includes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>integration</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<excludes>
+								<exclude>**/*UnitTest.scala</exclude>
+								<exclude>**/*UnitTest.scala</exclude>
+							</excludes>
+							<!-- Run only tests whose name end with "UnitTest" -->
+							<includes>
+								<include>**/*IntTest.scala</include>
+								<include>**/*IntegrationTest.scala</include>
+							</includes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+
+</project>

@@ -3,7 +3,7 @@ package is.spark.tests.unit
 import com.holdenkarau.spark.testing.DataFrameSuiteBase
 import org.scalatest.FunSuite
 
-class TestDF2 extends FunSuite with DataFrameSuiteBase {
+class DF2UT extends FunSuite with DataFrameSuiteBase {
   test("simple test") {
     val sqlCtx = sqlContext
     import sqlCtx.implicits._

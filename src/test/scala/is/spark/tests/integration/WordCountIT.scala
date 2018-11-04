@@ -6,7 +6,7 @@ import org.apache.spark.rdd.RDD
 import org.scalatest.Matchers._
 import org.scalatest.{FeatureSpec, GivenWhenThen}
 
-class TestWordCount extends FeatureSpec with GivenWhenThen with DataFrameSuiteBase {
+class WordCountIT extends FeatureSpec with GivenWhenThen with DataFrameSuiteBase {
   feature("Word Count") {
     scenario("When dealing with rdds") {
 

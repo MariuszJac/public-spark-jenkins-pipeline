@@ -6,7 +6,7 @@ import org.apache.spark.sql.functions.{col, explode}
 import org.scalatest.Matchers._
 import org.scalatest.{FeatureSpec, GivenWhenThen}
 
-class TestRowCount extends FeatureSpec with GivenWhenThen with DataFrameSuiteBase {
+class RowCountIT extends FeatureSpec with GivenWhenThen with DataFrameSuiteBase {
   feature("Raw Extract") {
     scenario("When reading raw data") {
 

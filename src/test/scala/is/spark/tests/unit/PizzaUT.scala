@@ -3,7 +3,7 @@ package is.spark.tests.unit
 import is.spark.examples.{Pizza, Topping}
 import org.scalatest.{BeforeAndAfter, FunSuite}
 
-class PizzaTests extends FunSuite with BeforeAndAfter {
+class PizzaUT extends FunSuite with BeforeAndAfter {
 
   var pizza: Pizza = _
 

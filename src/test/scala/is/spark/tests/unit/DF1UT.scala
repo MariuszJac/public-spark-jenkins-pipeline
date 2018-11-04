@@ -8,7 +8,7 @@ import org.scalatest.FunSuite
 import org.scalatest.prop.Checkers
 
 
-class TestDF1 extends FunSuite with SharedSparkContext with Checkers {
+class DF1UT extends FunSuite with SharedSparkContext with Checkers {
   test("assert dataframes generated correctly") {
     val schema = StructType(List(StructField("name", StringType), StructField("age", IntegerType)))
     val sqlContext = new SQLContext(sc)
