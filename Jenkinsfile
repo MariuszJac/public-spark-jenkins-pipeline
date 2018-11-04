@@ -33,13 +33,13 @@ pipeline {
                         dir ('out')
                         dir ('out/output.parquet')
                         sh 'mvn test -DmembersOnlySuites=is.spark.tests.unit'
-                        step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-*UnitTest.xml'])
+                        step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-*UT.xml'])
                     }
                 }
                 stage("Integration testing") {
                     steps {
                         sh 'mvn test -DmembersOnlySuites=is.spark.tests.integration'
-                        step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-'+ '*IntegrationTest.xml'])
+                        step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-'+ '*IT.xml'])
                     }
                 }
             }
