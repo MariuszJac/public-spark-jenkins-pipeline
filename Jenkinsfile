@@ -4,33 +4,24 @@ pipeline {
 	maven 'Maven3'
     }
     stages {
-        stage('Integration testing') {
-                steps {
-                    sh 'mvn test -DmembersOnlySuites=is.spark.tests.integration'
-                    step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-'+ '*IT.xml'])
-                }
-        }
-
-        /*
         stage('Testing') {
             parallel {
                 stage("Unit testing") {
                     steps {
-                        dir ('out')
-                        dir ('out/output.parquet')
                         sh 'mvn test -DmembersOnlySuites=is.spark.tests.unit'
                         step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-*UT.xml'])
                     }
                 }
                 stage("Integration testing") {
                     steps {
+                        dir ('out')
+                        dir ('out/output.parquet')
                         sh 'mvn test -DmembersOnlySuites=is.spark.tests.integration'
                         step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-'+ '*IT.xml'])
                     }
                 }
             }
         }
-        */
 
         stage('Compilation and Analysis') {
             parallel {
@@ -64,11 +55,6 @@ pipeline {
             }
           }
         }
-        stage('M2Storage') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
-            }
-        }
         stage('Packaging'){
             when {
                 branch "master"
@@ -85,6 +71,7 @@ pipeline {
                 }
             }
         }
+        /*
         stage("Staging") {
             steps {
                 sh 'pid=\$(lsof -i:7070 -t); kill -TERM \$pid || kill -KILL \$pid'
@@ -93,6 +80,7 @@ pipeline {
                 }
             }
         }
+        */
         stage ('Production deployment') {
             when {
                 branch 'master1'
