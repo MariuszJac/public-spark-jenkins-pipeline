@@ -11,6 +11,13 @@ pipeline {
                 }
         }
 
+        stage("Unit testing") {
+            steps {
+                sh 'mvn test -DmembersOnlySuites=is.spark.tests.unit'
+                step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-*UT.xml'])
+            }
+        }
+/*
         stage('Compilation and Analysis') {
             parallel {
                 stage("Compilation") {
@@ -59,16 +66,6 @@ pipeline {
                 }
             }
         }
-        /*
-        stage("Staging") {
-            steps {
-                sh 'pid=\$(lsof -i:7070 -t); kill -TERM \$pid || kill -KILL \$pid'
-                withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                    sh 'nohup mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=7070 &'
-                }
-            }
-        }
-        */
         stage ('Production deployment') {
             when {
                 branch 'master1'
@@ -77,6 +74,7 @@ pipeline {
                  input id: 'DeployToProd', message: 'Deploy to production system?', ok: 'Yes'
              }
         }
+*/
     }
     post {
         success {
@@ -87,6 +85,18 @@ pipeline {
         }
     }
 }
+
+        //run to redeploy app (needs tinkering as taken from other project)
+        /*
+        stage("Staging") {
+            steps {
+                sh 'pid=\$(lsof -i:7070 -t); kill -TERM \$pid || kill -KILL \$pid'
+                withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+                    sh 'nohup mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=7070 &'
+                }
+            }
+        }
+        */
 
         //disabled testing stage as we are running unit and integration tests using profiles defined in pom
         /*
@@ -101,3 +111,4 @@ pipeline {
             }
         }
         */
+
