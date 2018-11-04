@@ -36,10 +36,12 @@ pipeline {
             sh 'mvn scoverage:report'
             sh 'cp target/scoverage-data/scoverage.coverage.xml target/site/scoverage/'
             step([$class: 'ScoveragePublisher', reportDir: 'target', reportFile: 'scoverage.xml'])
+            /*
             withSonarQubeEnv('SonarQube') {
               // requires SonarQube Scanner for Maven 3.2+
               sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar -Dsonar.sources=src/main/scala -Dsonar.scoverage.reportPath=target/scoverage.xml'
             }
+            */
           }
         }
         stage('Packaging'){
