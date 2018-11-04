@@ -12,6 +12,8 @@ SparkTest.iml
 .classpath
 .project
 
+checkstyle-result.xml
+
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
