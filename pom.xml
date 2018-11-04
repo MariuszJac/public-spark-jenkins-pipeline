@@ -4,6 +4,9 @@
 <!-- https://github.com/shanbin/scoverage-plugin/issues/15 -->
 <!-- https://groups.google.com/forum/#!topic/scala-code-coverage-tool/CdAuGfbB9j8 -->
 <!-- https://stackoverflow.com/questions/35783964/jenkins-html-publisher-plugin-no-css-is-displayed-when-report-is-viewed-in-j -->
+<!-- https://stackoverflow.com/questions/35608354/how-to-publish-scalastyle-results-in-jenkins-maven-job -->
+
+
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
