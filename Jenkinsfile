@@ -30,6 +30,8 @@ pipeline {
             parallel {
                 stage("Unit testing") {
                     steps {
+                        dir ('out')
+                        dir ('out/output.parquet')
                         sh 'mvn test -Punit'
                         step([$class: 'JUnitResultArchiver', testResults:'**/target/surefire-reports/TEST-*UnitTest.xml'])
                     }
