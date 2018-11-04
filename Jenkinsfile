@@ -27,7 +27,8 @@ pipeline {
             }
         }
         stage('Testing') {
-            parallel {
+            //parallel
+            {
                 stage("Unit testing") {
                     steps {
                         dir ('out')
